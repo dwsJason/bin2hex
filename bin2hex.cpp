@@ -38,16 +38,16 @@ int main(int argc, char* argv[])
 	if (pInfilePath)
 	{
 		// Load the ORG File
-		ORGFile org_file( std::string(pInfilePath) );
+		ORGFile* org_file = new ORGFile( std::string(pInfilePath) );
 
 		// Cache the raw OMF File
-		BINFile bin_file( org_file );
+		BINFile bin_file( *org_file );
 
-		bin_file.LoadIntoMemory();
+//		bin_file.LoadIntoMemory();
 
 		if (pOutfilePath)
 		{
-			bin_file.SaveAsHex( pOutfilePath );
+//			bin_file.SaveAsHex( pOutfilePath );
 		}
 
 	}

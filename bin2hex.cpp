@@ -40,14 +40,12 @@ int main(int argc, char* argv[])
 		// Load the ORG File
 		ORGFile* org_file = new ORGFile( std::string(pInfilePath) );
 
-		// Cache the raw OMF File
+		// Load the files in the .org file, into memory
 		BINFile bin_file( *org_file );
-
-//		bin_file.LoadIntoMemory();
 
 		if (pOutfilePath)
 		{
-//			bin_file.SaveAsHex( pOutfilePath );
+			bin_file.SaveAsHex( pOutfilePath );
 		}
 
 	}

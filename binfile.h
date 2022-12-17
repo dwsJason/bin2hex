@@ -17,14 +17,25 @@ class ORGFile;
 
 //------------------------------------------------------------------------------
 
-//class BINSection
-//{
-//	BINSection();
-//	~BINSection() {}
-//
-//	i32 m_org;
-//	i32 m_length;
-//};
+class BINSection
+{
+public:
+	BINSection(const std::string& filename, i32 org);
+	~BINSection()
+	{
+		if (m_data)
+		{
+			delete m_data;
+			m_data = nullptr;
+		}
+	}
+
+	std::string m_name;
+	i32 m_org;
+	i32 m_length;
+	u8* m_data;
+
+};
 
 class BINFile
 {
@@ -41,13 +52,7 @@ public:
 
 private:
 	std::string m_filepath;
-//	std::vector<BINSection> m_sections;
-
-	u8* m_pRawData;
-
-	// 16 megabytes of 65816 flat memory space
-	u8* m_pRAM;
-
+	std::vector<BINSection*> m_sections;
 };
 
 #endif // BINFILE_H_

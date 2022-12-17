@@ -21,6 +21,19 @@ public:
 
 	u32 GetAddress(std::string sectionName);
 
+	u32 GetAddress(u32 index)
+	{
+		return m_orgs[index];
+	}
+
+	u32 NumSections() { return (u32)m_sections.size(); }
+
+	const std::string& GetSectionName(u32 index)
+	{
+		return m_sections[index];
+	}
+
+
 private:
 	std::string m_filepath;
 

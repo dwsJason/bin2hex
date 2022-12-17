@@ -89,8 +89,6 @@ ORGFile::ORGFile( std::string filepath )
 
 		printf("\nORGFile %s - %lld bytes\n", filepath.c_str(), length);
 
-		printf("Reading %s\n", filepath.c_str());
-
 		u8* pData = new u8[ length ];
 
 		fread(pData, sizeof(u8), length / sizeof(u8), pFile);
@@ -137,24 +135,17 @@ ORGFile::ORGFile( std::string filepath )
 		delete[] pData;
 
 		fclose(pFile);
-
-		printf("\nRead Completed\n");
 	}
 	else
 	{
 		printf("ORGFile could not open %s\n", filepath.c_str());
 		printf("This file is used to set ORG addresses for each\n");
-		printf("section in your OMF file, for the flat binary conversion\n");
+		printf("binary file you want to include in the .hex\n");
 		printf("\nFormat of contents in org file\n");
-		printf("segmentname org $ADDRESS\n\n");
-		printf("~GLOBALS org $20000\n");
-		printf("ASMCODE org $30000\n");
-		printf("vectors org $FFF0\n");
-		printf("\n\nWhen this file doesn't exist, the converter will auto ORG\n");
-		printf("starting in bank $01\n");
-		printf("Special Auto Allocation Commands\n");
-		printf(".alignment org $100   ; Minimum alignment to allocate\n");
-		printf(".autopack org $20000  ; Allocator doesn't allocate below this address\n\n");
+		printf("filename1   org $ADDRESS\n\n");
+		printf("main.bin    org $20000\n");
+		printf("asmcode.bin org $30000\n");
+		printf("vectors.bin org $FFF0\n");
 	}
 }
 

@@ -30,7 +30,7 @@ HexFile::~HexFile()
 void HexFile::SaveBytes(u8* pRAM, u32 address, u32 length)
 {
 	if (!m_pFile) return;
-
+	u32 org_address = address;
 	u32 total_length = length;
 	int num_banks =  ((address+length)&0xFF0000)-(address & 0xFF0000);
 	num_banks >>= 16;
@@ -50,7 +50,7 @@ void HexFile::SaveBytes(u8* pRAM, u32 address, u32 length)
 
 		const int MAX_BYTES_PER_LINE = 34;
 
-		u8* pData = pRAM + address;
+		u8* pData = pRAM + address - org_address;
 
 		while (length > 0)
 		{
